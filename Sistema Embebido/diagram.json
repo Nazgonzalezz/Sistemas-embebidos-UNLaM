@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 374.4, "left": 264.04, "attrs": {} },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick1",
+      "top": 47.4,
+      "left": -234.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 19.5,
+      "left": 253.8,
+      "attrs": { "temperature": "-21.8" }
+    },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": -147.2,
+      "left": 658.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": 234.01,
+      "left": 749.23,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-a4988", "id": "drv1", "top": 436.8, "left": 580.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "joystick1:GND", "black", [ "h0" ] ],
+    [ "esp:3V3", "joystick1:VCC", "red", [ "h0" ] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "h0.15", "v-134.4", "h0", "v-38.4" ] ],
+    [ "esp:GND.2", "dht1:GND", "black", [ "v-230.4", "h-67.2", "v-19.2" ] ],
+    [ "esp:VN", "lcd1:VCC", "red", [ "h-86.25", "v-528" ] ],
+    [ "esp:GND.3", "lcd1:GND", "black", [ "h76.8", "v-528", "h0", "v-38.4" ] ],
+    [ "esp:21", "lcd1:SDA", "blue", [ "h67.2", "v-528" ] ],
+    [ "esp:22", "lcd1:SCL", "blue", [ "h38.4", "v-76.8" ] ],
+    [ "esp:14", "dht1:SDA", "orange", [ "h-19.05", "v-336", "h28.8" ] ],
+    [ "drv1:RESET", "drv1:SLEEP", "violet", [ "h-9.6", "v9.6" ] ],
+    [ "esp:16", "drv1:DIR", "violet", [ "h0" ] ],
+    [ "esp:17", "drv1:STEP", "violet", [ "h0" ] ],
+    [ "drv1:2A", "stepper1:A+", "gold", [ "h0" ] ],
+    [ "drv1:1A", "stepper1:B+", "gold", [ "h0" ] ],
+    [ "drv1:1B", "stepper1:B-", "gold", [ "h0" ] ],
+    [ "drv1:2B", "stepper1:A-", "yellow", [ "h182.55", "v-57.52" ] ],
+    [ "joystick1:HORZ", "esp:32", "gold", [ "v0" ] ],
+    [ "joystick1:VERT", "esp:33", "gold", [ "v307.2", "h451.2" ] ]
+  ],
+  "dependencies": {}
+}
